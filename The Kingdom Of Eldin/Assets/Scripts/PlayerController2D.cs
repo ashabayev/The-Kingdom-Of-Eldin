@@ -81,6 +81,13 @@ public class PlayerController2D : MonoBehaviour
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpSpeed);
             //animator.Play("Player_jump");
         }
+
+        if (Input.GetKey("q") && arrowCount > 0)
+        {
+
+        }
+
+
 }
 
     void OnTriggerEnter2D(Collider2D other)
