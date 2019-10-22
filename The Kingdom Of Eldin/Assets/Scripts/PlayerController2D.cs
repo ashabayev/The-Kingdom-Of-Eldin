@@ -11,6 +11,7 @@ public class PlayerController2D : MonoBehaviour
     SpriteRenderer spriteRenderer;
 
     bool isGrounded;
+    bool isAttacking;
 
     [SerializeField]
     Transform groundCheck;
@@ -18,6 +19,8 @@ public class PlayerController2D : MonoBehaviour
     Transform groundCheckL;
     [SerializeField]
     Transform groundCheckR;
+    [SerializeField]
+    Transform attackPos;
 
     [SerializeField]
     private float runSpeed = 3;
@@ -25,10 +28,16 @@ public class PlayerController2D : MonoBehaviour
     [SerializeField]
     private float jumpSpeed = 5;
 
+    [SerializeField]
+    private float knightBasicAttackSpeed = .3f;
+    [SerializeField]
+    private float knightBasicAttackRange = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
         arrowCount = 0;
+        isAttacking = false;
         SetArrowCountText();
         animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
@@ -49,6 +58,8 @@ public class PlayerController2D : MonoBehaviour
             isGrounded = false;
             //animator.Play("Player_jump");
         }
+        
+        //horizontal movement
         if (Input.GetKey("d") || Input.GetKey("right"))
         {
             rb2d.velocity = new Vector2(runSpeed, rb2d.velocity.y);
@@ -76,12 +87,14 @@ public class PlayerController2D : MonoBehaviour
             rb2d.velocity = new Vector2(0, rb2d.velocity.y);
         }
 
+        //jumping
         if (Input.GetKey("space") && isGrounded)
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpSpeed);
             //animator.Play("Player_jump");
         }
 
+<<<<<<< HEAD
         if (Input.GetKey("q") && arrowCount > 0)
         {
 
@@ -89,6 +102,19 @@ public class PlayerController2D : MonoBehaviour
 
 
 }
+=======
+        //basic attack
+        //x is a temporary mapping
+        if (Input.GetKey("x"))
+        {
+            if(isAttacking == false)
+            {
+                isAttacking = true;
+                BasicAttack();
+            }
+        }
+    }
+>>>>>>> 49be0055a5406e280c5c0a1d4a9162dc3f3cf20c
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -103,5 +129,55 @@ public class PlayerController2D : MonoBehaviour
     void SetArrowCountText()
     {
         arrowCountText.text = "Arrows: " + arrowCount.ToString();
+    }
+
+    void BasicAttack()
+    {
+        //determine which attack to use
+
+        //knight
+            //actual game logic
+        IEnumerator attackRout = MeleeBasicAttack(knightBasicAttackSpeed, knightBasicAttackSpeed);
+        StartCoroutine(attackRout);
+
+            //play appropriate animation
+
+        //rogue
+
+        //ranger
+
+        //wizard
+    }
+
+    IEnumerator MeleeBasicAttack(float attackSpeed, float attackRange)
+    {
+        //if we're cool we wait until the windup is done here
+
+        //check for enemies to damage all at once because we're lazy
+        Collider2D[] damagedEnemies = Physics2D.OverlapCircleAll(attackPos.position, attackRange, LayerMask.NameToLayer("Enemy"));
+        foreach(Collider2D enemyCollider in damagedEnemies)
+        {
+            //tell the enemy script that the enemy takes damage
+
+            //for testing purposes
+            if(enemyCollider.gameObject.tag == "Enemy")
+            {
+                Debug.Log("enemy damaged");
+            }
+        }
+
+        //attack recovery
+        yield return new WaitForSeconds(attackSpeed);
+
+        //wrap up
+        isAttacking = false;
+        Debug.Log("attack successful");
+    }
+
+    //this is to make seeing the attack hitbox easy in the inspector, but you need to have the player selected to see it
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPos.position, knightBasicAttackRange);
     }
 }
