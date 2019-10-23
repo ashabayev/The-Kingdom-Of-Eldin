@@ -93,28 +93,10 @@ public class PlayerController2D : MonoBehaviour
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpSpeed);
             //animator.Play("Player_jump");
         }
-
-<<<<<<< HEAD
-        if (Input.GetKey("q") && arrowCount > 0)
-        {
-
-        }
-
-
-}
-=======
-        //basic attack
-        //x is a temporary mapping
-        if (Input.GetKey("x"))
-        {
-            if(isAttacking == false)
-            {
-                isAttacking = true;
-                BasicAttack();
-            }
-        }
+        
     }
->>>>>>> 49be0055a5406e280c5c0a1d4a9162dc3f3cf20c
+
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -133,18 +115,32 @@ public class PlayerController2D : MonoBehaviour
 
     void BasicAttack()
     {
+        //basic attack
+        //x is a temporary mapping
+        if (Input.GetKey("x"))
+        {
+            if (isAttacking == false)
+            {
+                isAttacking = true;
+                BasicAttack();
+            }
+        }
         //determine which attack to use
 
         //knight
-            //actual game logic
+        //actual game logic
         IEnumerator attackRout = MeleeBasicAttack(knightBasicAttackSpeed, knightBasicAttackSpeed);
         StartCoroutine(attackRout);
 
-            //play appropriate animation
+        //play appropriate animation
 
         //rogue
 
         //ranger
+        if (Input.GetKey("q") && arrowCount > 0)
+        {
+
+        }
 
         //wizard
     }
