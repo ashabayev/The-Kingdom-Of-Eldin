@@ -10,8 +10,14 @@ public class PlayerController2D : MonoBehaviour
     public Text arrowCountText;
     SpriteRenderer spriteRenderer;
 
+    //can only jump if grounded
     bool isGrounded;
+    //can't attack again while attacking
     bool isAttacking;
+    //can't move but will still rotate
+    bool isBlocking;
+    //can't move normally for the duration
+    bool isDodging;
 
     [SerializeField]
     Transform groundCheck;
@@ -19,6 +25,9 @@ public class PlayerController2D : MonoBehaviour
     Transform groundCheckL;
     [SerializeField]
     Transform groundCheckR;
+
+    [SerializeField]
+    Transform attackRotation;
     [SerializeField]
     Transform attackPos;
 
@@ -27,6 +36,9 @@ public class PlayerController2D : MonoBehaviour
 
     [SerializeField]
     private float jumpSpeed = 5;
+
+    float lastRunSpeed;
+    float lastJumpSpeed;
 
     [SerializeField]
     private float knightBasicAttackSpeed = .3f;
@@ -68,6 +80,8 @@ public class PlayerController2D : MonoBehaviour
                 //animator.Play("Player_run");
             }
             spriteRenderer.flipX = false;
+            attackRotation.transform.eulerAngles = new Vector3(0, 0, 0);
+
         }
         else if(Input.GetKey("a") || Input.GetKey("left"))
         {
@@ -77,6 +91,7 @@ public class PlayerController2D : MonoBehaviour
                 //animator.Play("Player_run");
             }
             spriteRenderer.flipX = true;
+            attackRotation.transform.eulerAngles = new Vector3(0, 180, 0);
         }
         else
         {
@@ -93,7 +108,40 @@ public class PlayerController2D : MonoBehaviour
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpSpeed);
             //animator.Play("Player_jump");
         }
+
+        //basic attack
+        //x is a temporary mapping
+        if (Input.GetKey("x"))
+        {
+            if (isAttacking == false)
+            {
+                isAttacking = true;
+                BasicAttack();
+            }
+        }
+
+        //special ability
+        //c is a temporary mapping
+        if (Input.GetKeyDown("c"))
+        {
+            SpecialAbility();
+        }
+
+        //block and charge are hold abilities, after being pressed they wait for a release here
+        if (Input.GetKeyUp("c") && isBlocking)
+        {
+            //release block
+            isBlocking = false;
+            jumpSpeed = lastJumpSpeed;
+            runSpeed = lastRunSpeed;
+            Debug.Log("release block");
+        }
+        //if (Input.GetKeyUp("c") && isCharging)
+        //{
+        //    //release charge
+        //}
         
+
     }
 
 
@@ -115,34 +163,21 @@ public class PlayerController2D : MonoBehaviour
 
     void BasicAttack()
     {
-        //basic attack
-        //x is a temporary mapping
-        if (Input.GetKey("x"))
-        {
-            if (isAttacking == false)
-            {
-                isAttacking = true;
-                BasicAttack();
-            }
-        }
         //determine which attack to use
 
-        //knight
-        //actual game logic
-        IEnumerator attackRout = MeleeBasicAttack(knightBasicAttackSpeed, knightBasicAttackSpeed);
-        StartCoroutine(attackRout);
+        //if knight
+        IEnumerator knightAttack = MeleeBasicAttack(knightBasicAttackSpeed, knightBasicAttackSpeed);
+        StartCoroutine(knightAttack);
 
-        //play appropriate animation
+        //if rogue
+        //IEnumerator rogueAttack = MeleeBasicAttack(rogueBasicAttackSpeed, rogueBasicAttackSpeed);
+        //StartCoroutine(rogueAttack);
 
-        //rogue
+        //if ranger
 
-        //ranger
-        if (Input.GetKey("q") && arrowCount > 0)
-        {
-
-        }
-
-        //wizard
+        //if wizard
+        //IEnumerator wizardAttack = MeleeBasicAttack(wizardBasicAttackSpeed, wizardBasicAttackSpeed);
+        //StartCoroutine(wizardAttack);
     }
 
     IEnumerator MeleeBasicAttack(float attackSpeed, float attackRange)
@@ -168,6 +203,31 @@ public class PlayerController2D : MonoBehaviour
         //wrap up
         isAttacking = false;
         Debug.Log("attack successful");
+    }
+
+    void SpecialAbility()
+    {
+        //determine which ability to use
+
+        //check for knight
+
+        //check for already blocking
+        if (isBlocking == false)
+        {
+            isBlocking = true;
+            lastJumpSpeed = jumpSpeed;
+            lastRunSpeed = runSpeed;
+            jumpSpeed = 0;
+            runSpeed = 0;
+            Debug.Log("block start");
+        }
+
+        //if rogue - dodge
+
+        //if ranger - charge
+
+        //if wizard - spell
+
     }
 
     //this is to make seeing the attack hitbox easy in the inspector, but you need to have the player selected to see it
