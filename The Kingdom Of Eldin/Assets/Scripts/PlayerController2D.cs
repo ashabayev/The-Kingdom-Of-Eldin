@@ -8,6 +8,9 @@ public class PlayerController2D : MonoBehaviour
     Rigidbody2D rb2d;
     private int arrowCount;
     public Text arrowCountText;
+    private int manaCount;
+    private int maxManaCount;
+    public Text manaCountText;
     SpriteRenderer spriteRenderer;
 
     //can only jump if grounded
@@ -49,8 +52,11 @@ public class PlayerController2D : MonoBehaviour
     void Start()
     {
         arrowCount = 0;
+        maxManaCount = 100;
+        manaCount = 100;
         isAttacking = false;
         SetArrowCountText();
+        SetManaCountText();
         animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -140,7 +146,15 @@ public class PlayerController2D : MonoBehaviour
         //{
         //    //release charge
         //}
-        
+        if (Input.GetKey("q"))
+        {
+            if (manaCount > 0)
+            {
+                manaCount--;
+                SetManaCountText();
+            }
+            dropArrows();
+        }
 
     }
 
@@ -156,9 +170,22 @@ public class PlayerController2D : MonoBehaviour
         }
     }
 
+    void dropArrows()
+    {
+        if (arrowCount > 0)
+        {
+            arrowCount--;
+            SetArrowCountText();
+        }
+    }
+
     void SetArrowCountText()
     {
         arrowCountText.text = "Arrows: " + arrowCount.ToString();
+    }
+    void SetManaCountText()
+    {
+        manaCountText.text = "Mana: " + manaCount.ToString() + "/100";
     }
 
     void BasicAttack()
