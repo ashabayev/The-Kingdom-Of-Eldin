@@ -306,7 +306,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 329988865}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.73000073, y: 0.8299997, z: -10}
+  m_LocalPosition: {x: -0.7300005, y: 0.8299997, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1993400390}
@@ -599,7 +599,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.73000073, y: 0.8299997, z: -10}
+  m_LocalPosition: {x: -0.7300005, y: 0.8299997, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1663062378}
@@ -1223,7 +1223,7 @@ GameObject:
   - component: {fileID: 1159004095}
   - component: {fileID: 1159004094}
   m_Layer: 5
-  m_Name: Text
+  m_Name: manaText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2592,7 +2592,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2104690996}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: f125611fe001483409101a0954b7ca95, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -2622,6 +2622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowCountText: {fileID: 331967731}
+  manaCountText: {fileID: 1159004094}
   groundCheck: {fileID: 36258549}
   groundCheckL: {fileID: 1406812586}
   groundCheckR: {fileID: 1317008459}
