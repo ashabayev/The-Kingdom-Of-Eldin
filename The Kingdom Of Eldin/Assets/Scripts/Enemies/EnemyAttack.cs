@@ -18,8 +18,8 @@ public class EnemyAttack : MonoBehaviour
     bool playerInRange;
     float timer;
 
-    // Start is called before the first frame update
-    void Start()
+
+    void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerHealth = player.GetComponent<PlayerHealth>();
@@ -27,17 +27,18 @@ public class EnemyAttack : MonoBehaviour
         //anim = GetComponent<Animator>();
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         // If the entering collider is the player
         if (other.gameObject == player)
         {
             //the player is in range.
             playerInRange = true;
+            print("yup");
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject == player)
         {
