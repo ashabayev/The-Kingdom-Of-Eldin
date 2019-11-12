@@ -45,18 +45,6 @@ public class PlayerHealth : MonoBehaviour
     void Update()
     {
         healthSlider.value = currentHealth;
-        if (Input.GetKeyDown(KeyCode.A) && currentHealth < startingHealth)
-        {
-            currentHealth += 2;
-        }
-        if (Input.GetKeyDown(KeyCode.S) && currentHealth > minHealth)
-        {
-            currentHealth -= 2;
-        }
-        if (currentHealth <= 0)
-        {
-            Death();
-        }
         if (damaged)
         {
             damageImage.color = flashColor;

@@ -64,6 +64,7 @@ public class PlayerController2D : MonoBehaviour
         SetArrowCountText();
         SetManaCountText();
         animator = GetComponent<Animator>();
+        health = GetComponent<PlayerHealth>();
         rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -174,10 +175,14 @@ public class PlayerController2D : MonoBehaviour
             }
             dropArrows();
         }
-        //add y position being too low condition for death
         if (rb2d.position.y < -50)
         {
             Death();
+        }
+        if (health.currentHealth <= 0)
+        {
+            Death();
+            health.currentHealth = health.startingHealth;
         }
     }
 
