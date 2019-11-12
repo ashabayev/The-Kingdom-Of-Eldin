@@ -9,9 +9,12 @@ public class PlayerController2D : MonoBehaviour
     private int arrowCount;
     public Text arrowCountText;
     private int manaCount;
+    private int increase;
     private int maxManaCount;
     public Text manaCountText;
+    public Vector3 startPosition;
     SpriteRenderer spriteRenderer;
+    PlayerHealth health;
 
     //can only jump if grounded
     bool isGrounded;
@@ -21,6 +24,8 @@ public class PlayerController2D : MonoBehaviour
     bool isBlocking;
     //can't move normally for the duration
     bool isDodging;
+
+    bool isDead;
 
     [SerializeField]
     Transform groundCheck;
@@ -54,12 +59,26 @@ public class PlayerController2D : MonoBehaviour
         arrowCount = 0;
         maxManaCount = 100;
         manaCount = 100;
+        increase = 25;
         isAttacking = false;
         SetArrowCountText();
         SetManaCountText();
         animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void Awake()
+    {
+        startPosition = transform.position;
+        print(startPosition);
+    }
+
+    void Death()
+    {
+        isDead = true;
+        // playerControl.enabled = false;
+        transform.position = startPosition;
     }
 
 
@@ -155,7 +174,11 @@ public class PlayerController2D : MonoBehaviour
             }
             dropArrows();
         }
-
+        //add y position being too low condition for death
+        if (rb2d.position.y < -50)
+        {
+            Death();
+        }
     }
 
 
