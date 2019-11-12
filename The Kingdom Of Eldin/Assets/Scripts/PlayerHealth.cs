@@ -7,11 +7,13 @@ public class PlayerHealth : MonoBehaviour
 {
     public int startingHealth = 100;
     public int currentHealth;
+    public int minHealth = 0;
     public Slider healthSlider;
     public Image damageImage;
     public AudioClip deathClip;
     public float flashSpeed = 5f;
     public Color flashColor = new Color(1f, 0f, 0f, 0.1f);
+    public Vector3 startPosition;
 
     Animator anim;
     AudioSource playerAudio;
@@ -19,14 +21,17 @@ public class PlayerHealth : MonoBehaviour
     bool isDead;
     bool damaged;
 
-   /**  private void Awake()
+    private void Awake()
     {
-        anim = GetComponent<Animator>();
-        playerAudio = GetComponent<AudioSource>();
-        playerControl = GetComponent<PlayerController2D>();
-        currentHealth = startingHealth;
+        startPosition = transform.position;
+        print(startPosition);
     }
-    */
+
+    void Death()
+    {
+        isDead = true;
+        transform.position = startPosition;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +44,19 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        healthSlider.value = currentHealth;
+        if (Input.GetKeyDown(KeyCode.A) && currentHealth < startingHealth)
+        {
+            currentHealth += 2;
+        }
+        if (Input.GetKeyDown(KeyCode.S) && currentHealth > minHealth)
+        {
+            currentHealth -= 2;
+        }
+        if (currentHealth <= 0)
+        {
+            Death();
+        }
         if (damaged)
         {
             damageImage.color = flashColor;
@@ -59,12 +77,5 @@ public class PlayerHealth : MonoBehaviour
         {
             Death();
         }
-    }
-
-    void Death()
-    {
-        isDead = true;
-        anim.SetTrigger("Die");
-        playerControl.enabled = false;
     }
 }
