@@ -21,9 +21,13 @@ public class PlayerController2D : MonoBehaviour
     //can't attack again while attacking
     bool isAttacking;
     //can't move but will still rotate
-    bool isBlocking;
+    public static bool isBlocking;
     //can't move normally for the duration
-    bool isDashing;
+    public static bool isDashing;
+    //dash currently not useable
+    bool DashOnCooldown;
+    //can move normally, would be false to prohibit normal movement during something like a dash or block
+    bool canMove;
 
     bool isDead;
 
@@ -69,6 +73,7 @@ public class PlayerController2D : MonoBehaviour
         manaCount = 100;
         increase = 25;
         isAttacking = false;
+        canMove = true;
         SetArrowCountText();
         SetManaCountText();
         animator = GetComponent<Animator>();
@@ -106,23 +111,29 @@ public class PlayerController2D : MonoBehaviour
         }
         
         //horizontal movement
-        if (Input.GetKey("d") || Input.GetKey("right"))
+        if ((Input.GetKey("d") || Input.GetKey("right")))
         {
-            rb2d.velocity = new Vector2(runSpeed, rb2d.velocity.y);
-            if (isGrounded)
+            if (canMove)
             {
-                //animator.Play("Player_run");
+                rb2d.velocity = new Vector2(runSpeed, rb2d.velocity.y);
+                if (isGrounded)
+                {
+                    //animator.Play("Player_run");
+                }
             }
             spriteRenderer.flipX = false;
             attackRotation.transform.eulerAngles = new Vector3(0, 0, 0);
 
         }
-        else if(Input.GetKey("a") || Input.GetKey("left"))
+        else if((Input.GetKey("a") || Input.GetKey("left")))
         {
-            rb2d.velocity = new Vector2(-runSpeed, rb2d.velocity.y);
-            if (isGrounded)
+            if (canMove)
             {
-                //animator.Play("Player_run");
+                rb2d.velocity = new Vector2(-runSpeed, rb2d.velocity.y);
+                if (isGrounded)
+                {
+                    //animator.Play("Player_run");
+                }
             }
             spriteRenderer.flipX = true;
             attackRotation.transform.eulerAngles = new Vector3(0, 180, 0);
@@ -137,7 +148,7 @@ public class PlayerController2D : MonoBehaviour
         }
 
         //jumping
-        if (Input.GetKey("space") && isGrounded)
+        if ((Input.GetKey("space") && isGrounded) & !isBlocking)
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpSpeed);
             //animator.Play("Player_jump");
@@ -166,8 +177,7 @@ public class PlayerController2D : MonoBehaviour
         {
             //release block
             isBlocking = false;
-            jumpSpeed = lastJumpSpeed;
-            runSpeed = lastRunSpeed;
+            canMove = true;
             Debug.Log("release block");
         }
         //if (Input.GetKeyUp("c") && isCharging)
@@ -274,24 +284,22 @@ public class PlayerController2D : MonoBehaviour
 
         //check for knight
 
-        ////check for already blocking
-        //if (isBlocking == false)
-        //{
-        //    isBlocking = true;
-        //    lastJumpSpeed = jumpSpeed;
-        //    lastRunSpeed = runSpeed;
-        //    jumpSpeed = 0;
-        //    runSpeed = 0;
-        //    Debug.Log("block start");
-        //}
+        //check for already blocking
+        if (isBlocking == false)
+        {
+            isBlocking = true;
+            canMove = false;
+            Debug.Log("block start");
+        }
 
         //if rogue - dodge
-        if (isDashing == false)
-        {
-            isDashing = true;
-            IEnumerator rogueDash = Dash(dashSpeed, dashDuration, dashCoolDown);
-            StartCoroutine(rogueDash);
-        }
+        //if (DashOnCooldown == false)
+        //{
+        //    isDashing = true;
+        //    DashOnCooldown = true;
+        //    IEnumerator rogueDash = Dash(dashSpeed, dashDuration, dashCoolDown);
+        //    StartCoroutine(rogueDash);
+        //}
 
         //if ranger - charge
 
@@ -301,10 +309,7 @@ public class PlayerController2D : MonoBehaviour
 
     IEnumerator Dash(float speed, float duration, float cooldown)
     {
-        lastJumpSpeed = jumpSpeed;
-        lastRunSpeed = runSpeed;
-        jumpSpeed = 0;
-        runSpeed = 0;
+        canMove = false;
 
         float direction = 1f;
         if (spriteRenderer.flipX == true)
@@ -320,12 +325,13 @@ public class PlayerController2D : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        jumpSpeed = lastJumpSpeed;
-        runSpeed = lastRunSpeed;
-        //dash over, but can't use again until cooldown
-
-        yield return new WaitForSeconds(cooldown);
+        //dash over
+        canMove = true;
         isDashing = false;
+
+        //cooldown period
+        yield return new WaitForSeconds(cooldown);
+        DashOnCooldown = false;
     }
 
     //this is to make seeing the attack hitbox easy in the inspector, but you need to have the player selected to see it

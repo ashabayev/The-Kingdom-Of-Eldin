@@ -57,6 +57,13 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage (int amount)
     {
+        bool dashInvincibility = PlayerController2D.isDashing;
+        bool blockInvincibility = PlayerController2D.isBlocking;
+        if (dashInvincibility == true | blockInvincibility == true)
+        {
+            return;
+        }
+
         damaged = true;
         currentHealth -= amount;
         healthSlider.value = currentHealth;
