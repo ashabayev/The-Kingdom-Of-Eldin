@@ -23,7 +23,7 @@ public class PlayerController2D : MonoBehaviour
     //can't move but will still rotate
     bool isBlocking;
     //can't move normally for the duration
-    bool isDodging;
+    bool isDashing;
 
     bool isDead;
 
@@ -52,6 +52,14 @@ public class PlayerController2D : MonoBehaviour
     private float knightBasicAttackSpeed = .3f;
     [SerializeField]
     private float knightBasicAttackRange = 1f;
+
+    //special ability values
+    [SerializeField]
+    private float dashSpeed = 6f;
+    [SerializeField]
+    private float dashDuration = .6f;
+    [SerializeField]
+    private float dashCoolDown = .3f;
 
     // Start is called before the first frame update
     void Start()
@@ -266,23 +274,58 @@ public class PlayerController2D : MonoBehaviour
 
         //check for knight
 
-        //check for already blocking
-        if (isBlocking == false)
-        {
-            isBlocking = true;
-            lastJumpSpeed = jumpSpeed;
-            lastRunSpeed = runSpeed;
-            jumpSpeed = 0;
-            runSpeed = 0;
-            Debug.Log("block start");
-        }
+        ////check for already blocking
+        //if (isBlocking == false)
+        //{
+        //    isBlocking = true;
+        //    lastJumpSpeed = jumpSpeed;
+        //    lastRunSpeed = runSpeed;
+        //    jumpSpeed = 0;
+        //    runSpeed = 0;
+        //    Debug.Log("block start");
+        //}
 
         //if rogue - dodge
+        if (isDashing == false)
+        {
+            isDashing = true;
+            IEnumerator rogueDash = Dash(dashSpeed, dashDuration, dashCoolDown);
+            StartCoroutine(rogueDash);
+        }
 
         //if ranger - charge
 
         //if wizard - spell
 
+    }
+
+    IEnumerator Dash(float speed, float duration, float cooldown)
+    {
+        lastJumpSpeed = jumpSpeed;
+        lastRunSpeed = runSpeed;
+        jumpSpeed = 0;
+        runSpeed = 0;
+
+        float direction = 1f;
+        if (spriteRenderer.flipX == true)
+        {
+            direction = -1f;
+        }
+
+        float timePassed = 0;
+        while (timePassed < duration)
+        {
+            rb2d.AddForce(new Vector2(speed * direction, 0));
+            timePassed += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        jumpSpeed = lastJumpSpeed;
+        runSpeed = lastRunSpeed;
+        //dash over, but can't use again until cooldown
+
+        yield return new WaitForSeconds(cooldown);
+        isDashing = false;
     }
 
     //this is to make seeing the attack hitbox easy in the inspector, but you need to have the player selected to see it

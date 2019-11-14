@@ -2817,6 +2817,9 @@ MonoBehaviour:
   jumpSpeed: 16
   knightBasicAttackSpeed: 0.3
   knightBasicAttackRange: 1
+  dashSpeed: 400
+  dashDuration: 0.6
+  dashCoolDown: 0.2
 --- !u!114 &2104691003
 MonoBehaviour:
   m_ObjectHideFlags: 0
