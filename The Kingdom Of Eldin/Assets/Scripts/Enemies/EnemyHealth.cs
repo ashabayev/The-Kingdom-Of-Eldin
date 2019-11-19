@@ -31,15 +31,15 @@ public class EnemyHealth : MonoBehaviour
 
     }
 
-    public void TakeDamage(int amount, Vector3 hitPoint)
+    public void TakeDamage(int amount)
     {
         if (isDead)
         {
             return;
         }
 
-
-        enemyAudio.Play(); //hurt sound effect
+        print("you hurt me");
+        //enemyAudio.Play(); //hurt sound effect
         currentHealth -= amount;
 
         if (currentHealth <= 0)
@@ -51,11 +51,11 @@ public class EnemyHealth : MonoBehaviour
     void Death()
     {
         isDead = true;
-
+        print("i'm ded");
         //ScoreManager.score += scoreValue;
         //destroy
-        enemyAudio.clip = deathClip;
-        enemyAudio.Play();
-        Destroy(gameObject, 0f);
+        //enemyAudio.clip = deathClip;
+        //enemyAudio.Play();
+        Destroy(this.gameObject, 0f);
     }
 }

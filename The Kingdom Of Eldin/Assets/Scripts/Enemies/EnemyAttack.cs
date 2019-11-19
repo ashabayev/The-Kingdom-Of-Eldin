@@ -34,7 +34,6 @@ public class EnemyAttack : MonoBehaviour
         {
             //the player is in range.
             playerInRange = true;
-            print("yup");
         }
     }
 

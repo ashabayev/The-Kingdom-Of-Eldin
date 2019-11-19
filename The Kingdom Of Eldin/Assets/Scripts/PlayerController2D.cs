@@ -30,6 +30,7 @@ public class PlayerController2D : MonoBehaviour
     bool canMove;
 
     bool isDead;
+    int damagePerBasicHit = 50;
 
     [SerializeField]
     Transform groundCheck;
@@ -267,6 +268,9 @@ public class PlayerController2D : MonoBehaviour
             if(enemyCollider.gameObject.tag == "Enemy")
             {
                 Debug.Log("enemy damaged");
+                EnemyHealth enemyHealth = enemyCollider.GetComponent<EnemyHealth>();
+                
+                enemyHealth.TakeDamage(damagePerBasicHit);
             }
         }
 
