@@ -9,7 +9,8 @@ public class PlayerController2D : MonoBehaviour
     private int arrowCount;
     public Text arrowCountText;
     private int manaCount;
-    private int increase;
+    private float regenMana;
+    private float manaPerSecond;
     private int maxManaCount;
     public Text manaCountText;
     public Vector3 startPosition;
@@ -70,9 +71,10 @@ public class PlayerController2D : MonoBehaviour
     void Start()
     {
         arrowCount = 0;
+        regenMana = 0;
         maxManaCount = 100;
+        manaPerSecond = 1f;
         manaCount = 100;
-        increase = 25;
         isAttacking = false;
         canMove = true;
         SetArrowCountText();
@@ -110,7 +112,7 @@ public class PlayerController2D : MonoBehaviour
             isGrounded = false;
             //animator.Play("Player_jump");
         }
-        
+
         //horizontal movement
         if ((Input.GetKey("d") || Input.GetKey("right")))
         {
@@ -126,7 +128,7 @@ public class PlayerController2D : MonoBehaviour
             attackRotation.transform.eulerAngles = new Vector3(0, 0, 0);
 
         }
-        else if((Input.GetKey("a") || Input.GetKey("left")))
+        else if ((Input.GetKey("a") || Input.GetKey("left")))
         {
             if (canMove)
             {
@@ -187,12 +189,12 @@ public class PlayerController2D : MonoBehaviour
         //}
         if (Input.GetKey("q"))
         {
-            if (manaCount > 0)
-            {
-                manaCount--;
-                SetManaCountText();
-            }
+            depleteMana();
             dropArrows();
+        }
+        else
+        {
+            replenishMana();
         }
         if (rb2d.position.y < -50)
         {
@@ -204,8 +206,29 @@ public class PlayerController2D : MonoBehaviour
             health.currentHealth = health.startingHealth;
         }
     }
-
-
+    void depleteMana()
+    {
+        if (manaCount > 0)
+        {
+            manaCount--;
+            SetManaCountText();
+        }
+    }
+    void replenishMana()
+    {
+        regenMana += Time.deltaTime * manaPerSecond;
+        if (regenMana >= 1)
+        {
+            int floor = Mathf.FloorToInt(regenMana);
+            regenMana = 0;
+            if (manaCount >= 0 && manaCount < maxManaCount)
+            {
+                manaCount += floor;
+                Mathf.Clamp(manaCount + floor, 0, maxManaCount);
+                SetManaCountText();
+            }
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -260,16 +283,16 @@ public class PlayerController2D : MonoBehaviour
 
         //check for enemies to damage all at once because we're lazy
         Collider2D[] damagedEnemies = Physics2D.OverlapCircleAll(attackPos.position, attackRange, LayerMask.NameToLayer("Enemy"));
-        foreach(Collider2D enemyCollider in damagedEnemies)
+        foreach (Collider2D enemyCollider in damagedEnemies)
         {
             //tell the enemy script that the enemy takes damage
 
             //for testing purposes
-            if(enemyCollider.gameObject.tag == "Enemy")
+            if (enemyCollider.gameObject.tag == "Enemy")
             {
                 Debug.Log("enemy damaged");
                 EnemyHealth enemyHealth = enemyCollider.GetComponent<EnemyHealth>();
-                
+
                 enemyHealth.TakeDamage(damagePerBasicHit);
             }
         }

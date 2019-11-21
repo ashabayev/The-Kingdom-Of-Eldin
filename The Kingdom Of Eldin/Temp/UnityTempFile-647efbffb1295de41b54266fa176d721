@@ -6,6 +6,22 @@
 /nostdlib+
 /preferreduilang:en-US
 /langversion:latest
+/reference:Library/ScriptAssemblies/Unity.Timeline.Editor.dll
+/reference:Library/ScriptAssemblies/Cinemachine.dll
+/reference:Library/ScriptAssemblies/Unity.VSCode.Editor.dll
+/reference:Library/ScriptAssemblies/AstarPathfindingProject.dll
+/reference:Library/ScriptAssemblies/PackageToolsEditor.dll
+/reference:Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll
+/reference:Library/ScriptAssemblies/UnityEngine.UI.dll
+/reference:Library/ScriptAssemblies/Unity.Timeline.dll
+/reference:Library/ScriptAssemblies/AstarPathfindingProjectEditor.dll
+/reference:Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll
+/reference:Library/ScriptAssemblies/Unity.Rider.Editor.dll
+/reference:Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll
+/reference:Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll
+/reference:Library/ScriptAssemblies/com.unity.cinemachine.editor.dll
+/reference:Library/ScriptAssemblies/Unity.TextMeshPro.dll
+/reference:Library/ScriptAssemblies/UnityEditor.UI.dll
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.ARModule.dll"
@@ -67,22 +83,6 @@
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/Managed/UnityEditor.dll"
-/reference:Library/ScriptAssemblies/Unity.Timeline.Editor.dll
-/reference:Library/ScriptAssemblies/Cinemachine.dll
-/reference:Library/ScriptAssemblies/Unity.VSCode.Editor.dll
-/reference:Library/ScriptAssemblies/AstarPathfindingProject.dll
-/reference:Library/ScriptAssemblies/PackageToolsEditor.dll
-/reference:Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll
-/reference:Library/ScriptAssemblies/UnityEngine.UI.dll
-/reference:Library/ScriptAssemblies/Unity.Timeline.dll
-/reference:Library/ScriptAssemblies/AstarPathfindingProjectEditor.dll
-/reference:Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll
-/reference:Library/ScriptAssemblies/Unity.Rider.Editor.dll
-/reference:Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll
-/reference:Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll
-/reference:Library/ScriptAssemblies/com.unity.cinemachine.editor.dll
-/reference:Library/ScriptAssemblies/Unity.TextMeshPro.dll
-/reference:Library/ScriptAssemblies/UnityEditor.UI.dll
 /reference:Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/Microsoft.Win32.Primitives.dll"

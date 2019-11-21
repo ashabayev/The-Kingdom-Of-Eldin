@@ -1,11 +1,15 @@
 /target:library
 /nowarn:0169
-/out:Temp/Assembly-CSharp.dll
+/out:Temp/Cinemachine.dll
 /debug:portable
 /optimize-
 /nostdlib+
 /preferreduilang:en-US
 /langversion:latest
+/reference:Library/ScriptAssemblies/Unity.Timeline.dll
+/reference:Library/ScriptAssemblies/UnityEngine.UI.dll
+/reference:Library/ScriptAssemblies/UnityEditor.UI.dll
+/reference:Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.ARModule.dll"
@@ -67,22 +71,10 @@
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/Managed/UnityEditor.dll"
-/reference:Library/ScriptAssemblies/Unity.Timeline.Editor.dll
-/reference:Library/ScriptAssemblies/Cinemachine.dll
-/reference:Library/ScriptAssemblies/Unity.VSCode.Editor.dll
-/reference:Library/ScriptAssemblies/AstarPathfindingProject.dll
-/reference:Library/ScriptAssemblies/PackageToolsEditor.dll
-/reference:Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll
-/reference:Library/ScriptAssemblies/UnityEngine.UI.dll
-/reference:Library/ScriptAssemblies/Unity.Timeline.dll
-/reference:Library/ScriptAssemblies/AstarPathfindingProjectEditor.dll
-/reference:Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll
-/reference:Library/ScriptAssemblies/Unity.Rider.Editor.dll
-/reference:Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll
-/reference:Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll
-/reference:Library/ScriptAssemblies/com.unity.cinemachine.editor.dll
-/reference:Library/ScriptAssemblies/Unity.TextMeshPro.dll
-/reference:Library/ScriptAssemblies/UnityEditor.UI.dll
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/Managed/UnityEditor.Graphs.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll"
+/reference:"C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll"
 /reference:Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/Microsoft.Win32.Primitives.dll"
@@ -291,14 +283,78 @@
 /define:ENABLE_TILEMAP
 /define:ENABLE_TIMELINE
 /define:ENABLE_LEGACY_INPUT_MANAGER
+/define:CINEMACHINE_TIMELINE
+/define:CINEMACHINE_PHYSICS_2D
+/define:CINEMACHINE_PHYSICS
+/define:CINEMACHINE_UGUI
 /define:CSHARP_7_OR_LATER
 /define:CSHARP_7_3_OR_NEWER
-Assets\Scripts\ArrowPickup\Rotator.cs
-Assets\Scripts\Enemies\EnemyAttack.cs
-Assets\Scripts\Enemies\enemyGraphics.cs
-Assets\Scripts\Enemies\EnemyHealth.cs
-Assets\Scripts\Enemies\Patrol.cs
-Assets\Scripts\Environment\FullscreenSprite.cs
-Assets\Scripts\PlayerController2D.cs
-Assets\Scripts\PlayerHealth.cs
-Assets\Scripts\SwitchCharacter.cs
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\AssemblyInfo.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Behaviours\CinemachineBlendListCamera.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Behaviours\CinemachineBrain.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Behaviours\CinemachineCameraOffset.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Behaviours\CinemachineClearShot.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Behaviours\CinemachineCollider.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Behaviours\CinemachineConfiner.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Behaviours\CinemachineDollyCart.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Behaviours\CinemachineExternalCamera.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Behaviours\CinemachineFollowZoom.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Behaviours\CinemachineFreeLook.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Behaviours\CinemachineMixingCamera.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Behaviours\CinemachinePath.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Behaviours\CinemachinePipeline.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Behaviours\CinemachineSmoothPath.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Behaviours\CinemachineStateDrivenCamera.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Behaviours\CinemachineStoryboard.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Behaviours\CinemachineTargetGroup.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Behaviours\CinemachineVirtualCamera.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Components\CinemachineBasicMultiChannelPerlin.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Components\CinemachineComposer.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Components\CinemachineFramingTransposer.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Components\CinemachineGroupComposer.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Components\CinemachineHardLockToTarget.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Components\CinemachineHardLookAt.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Components\CinemachineOrbitalTransposer.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Components\CinemachinePOV.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Components\CinemachineSameAsFollowTarget.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Components\CinemachineTrackedDolly.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Components\CinemachineTransposer.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\AxisState.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\CameraState.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\CinemachineBlend.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\CinemachineBlenderSettings.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\CinemachineComponentBase.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\CinemachineCore.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\CinemachineDebug.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\CinemachineExtension.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\CinemachineInputAxisDriver.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\CinemachinePathBase.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\CinemachinePropertyAttribute.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\CinemachineTouchInputMapper.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\CinemachineVirtualCameraBase.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\GaussianFilter.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\ICinemachineCamera.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\ICinemachineComponent.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\LensSettings.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\NoiseSettings.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\Predictor.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\RuntimeUtility.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\SignalSourceAsset.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\SplineHelpers.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\UnityVectorExtensions.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Core\UpdateTracker.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\EventHelpers\CinemachineTriggerAction.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Experimental\CinemachineNewFreeLook.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Experimental\CinemachineNewVirtualCamera.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Impulse\CinemachineCollisionImpulseSource.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Impulse\CinemachineFixedSignal.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Impulse\CinemachineImpulseDefinition.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Impulse\CinemachineImpulseListener.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Impulse\CinemachineImpulseManager.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Impulse\CinemachineImpulseSource.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\PostProcessing\CinemachinePostProcessing.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\PostProcessing\CinemachineVolumeSettings.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Timeline\CinemachineMixer.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Timeline\CinemachineShot.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Timeline\CinemachineShotPlayable.cs"
+"C:\Users\simde\Desktop\kingdom\The-Kingdom-Of-Eldin\The Kingdom Of Eldin\Library\PackageCache\com.unity.cinemachine@2.3.4\Runtime\Timeline\CinemachineTrack.cs"
