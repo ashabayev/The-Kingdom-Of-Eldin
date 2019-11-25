@@ -16,6 +16,7 @@ public class PlayerController2D : MonoBehaviour
     public Vector3 startPosition;
     SpriteRenderer spriteRenderer;
     PlayerHealth health;
+    public GameObject EndGamePanel;
 
     //can only jump if grounded
     bool isGrounded;
@@ -83,6 +84,7 @@ public class PlayerController2D : MonoBehaviour
         health = GetComponent<PlayerHealth>();
         rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        EndGamePanel.SetActive(false);
     }
 
     private void Awake()
@@ -237,6 +239,10 @@ public class PlayerController2D : MonoBehaviour
             other.gameObject.SetActive(false);
             arrowCount++;
             SetArrowCountText();
+        }
+        if (other.gameObject.CompareTag("Door"))
+        {
+            EndGamePanel.SetActive(true);
         }
     }
 
