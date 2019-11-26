@@ -243,6 +243,9 @@ public class PlayerController2D : MonoBehaviour
         if (other.gameObject.CompareTag("Door"))
         {
             EndGamePanel.SetActive(true);
+            spriteRenderer.gameObject.SetActive(false);
+            animator.gameObject.SetActive(false);
+            rb2d.gameObject.SetActive(false);
         }
     }
 
