@@ -13,6 +13,7 @@ public class PlayerController2D : MonoBehaviour
     private float manaPerSecond;
     private int maxManaCount;
     public Text manaCountText;
+    private int jobID;
     public Vector3 startPosition;
     SpriteRenderer spriteRenderer;
     PlayerHealth health;
@@ -52,13 +53,14 @@ public class PlayerController2D : MonoBehaviour
     [SerializeField]
     private float jumpSpeed = 5;
 
-    float lastRunSpeed;
-    float lastJumpSpeed;
-
     [SerializeField]
     private float knightBasicAttackSpeed = .3f;
     [SerializeField]
     private float knightBasicAttackRange = 1f;
+    [SerializeField]
+    private float rogueBasicAttackSpeed = .2f;
+    [SerializeField]
+    private float rogueBasicAttackRange = .7f;
 
     //special ability values
     [SerializeField]
@@ -78,6 +80,7 @@ public class PlayerController2D : MonoBehaviour
         manaCount = 100;
         isAttacking = false;
         canMove = true;
+        jobID = 1;
         SetArrowCountText();
         SetManaCountText();
         animator = GetComponent<Animator>();
@@ -207,6 +210,40 @@ public class PlayerController2D : MonoBehaviour
             Death();
             health.currentHealth = health.startingHealth;
         }
+
+        //job changing
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            jobID = 1;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            jobID = 2;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            jobID = 3;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            jobID = 4;
+        }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            jobID--;
+            if (jobID < 1)
+            {
+                jobID = 4;
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            jobID++;
+            if (jobID > 4)
+            {
+                jobID = 1;
+            }
+        }
     }
     void depleteMana()
     {
@@ -249,6 +286,28 @@ public class PlayerController2D : MonoBehaviour
         }
     }
 
+    string getCurrentJob()
+    {
+        switch (jobID)
+        {
+            case 1:
+                Debug.Log("job set to knight");
+                return "knight";
+            case 2:
+                Debug.Log("job set to rogue");
+                return "rogue";
+            case 3:
+                Debug.Log("job set to ranger");
+                return "ranger";
+            case 4:
+                Debug.Log("job set to wizard");
+                return "wizard";
+            default:
+                Debug.Log("current job error - jobID currently set to: " + jobID);
+                return "knight";
+        }
+    }
+
     void dropArrows()
     {
         if (arrowCount > 0)
@@ -270,20 +329,24 @@ public class PlayerController2D : MonoBehaviour
     void BasicAttack()
     {
         //determine which attack to use
-
-        //if knight
-        IEnumerator knightAttack = MeleeBasicAttack(knightBasicAttackSpeed, knightBasicAttackSpeed);
-        StartCoroutine(knightAttack);
-
-        //if rogue
-        //IEnumerator rogueAttack = MeleeBasicAttack(rogueBasicAttackSpeed, rogueBasicAttackSpeed);
-        //StartCoroutine(rogueAttack);
-
-        //if ranger
-
-        //if wizard
-        //IEnumerator wizardAttack = MeleeBasicAttack(wizardBasicAttackSpeed, wizardBasicAttackSpeed);
-        //StartCoroutine(wizardAttack);
+        switch (getCurrentJob())
+        {
+            case "knight":
+                IEnumerator knightAttack = MeleeBasicAttack(knightBasicAttackSpeed, knightBasicAttackSpeed);
+                StartCoroutine(knightAttack);
+                break;
+            case "rogue":
+                IEnumerator rogueAttack = MeleeBasicAttack(rogueBasicAttackSpeed, rogueBasicAttackSpeed);
+                StartCoroutine(rogueAttack);
+                break;
+            case "ranger":
+                break;
+            case "wizard":
+                break;
+            default:
+                Debug.Log("current job error - basic attack");
+                break;
+        }
     }
 
     IEnumerator MeleeBasicAttack(float attackSpeed, float attackRange)
@@ -316,31 +379,32 @@ public class PlayerController2D : MonoBehaviour
 
     void SpecialAbility()
     {
-        //determine which ability to use
-
-        //check for knight
-
-        //check for already blocking
-        if (isBlocking == false)
+        switch (getCurrentJob())
         {
-            isBlocking = true;
-            canMove = false;
-            Debug.Log("block start");
+            case "knight":
+                if (isBlocking == false)
+                {
+                    isBlocking = true;
+                    canMove = false;
+                }
+                break;
+            case "rogue":
+                if (DashOnCooldown == false)
+                {
+                    isDashing = true;
+                    DashOnCooldown = true;
+                    IEnumerator rogueDash = Dash(dashSpeed, dashDuration, dashCoolDown);
+                    StartCoroutine(rogueDash);
+                }
+                break;
+            case "ranger":
+                break;
+            case "wizard":
+                break;
+            default:
+                Debug.Log("current job error - special ability");
+                break;
         }
-
-        //if rogue - dodge
-        //if (DashOnCooldown == false)
-        //{
-        //    isDashing = true;
-        //    DashOnCooldown = true;
-        //    IEnumerator rogueDash = Dash(dashSpeed, dashDuration, dashCoolDown);
-        //    StartCoroutine(rogueDash);
-        //}
-
-        //if ranger - charge
-
-        //if wizard - spell
-
     }
 
     IEnumerator Dash(float speed, float duration, float cooldown)
