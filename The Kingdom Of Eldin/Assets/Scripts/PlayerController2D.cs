@@ -88,6 +88,7 @@ public class PlayerController2D : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         EndGamePanel.SetActive(false);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"));
     }
 
     private void Awake()
