@@ -355,7 +355,7 @@ public class PlayerController2D : MonoBehaviour
         //if we're cool we wait until the windup is done here
 
         //check for enemies to damage all at once because we're lazy
-        Collider2D[] damagedEnemies = Physics2D.OverlapCircleAll(attackPos.position, attackRange, LayerMask.NameToLayer("Enemy"));
+        Collider2D[] damagedEnemies = Physics2D.OverlapCircleAll(attackPos.position, attackRange, 1 << LayerMask.NameToLayer("Enemy"));
         foreach (Collider2D enemyCollider in damagedEnemies)
         {
             //tell the enemy script that the enemy takes damage

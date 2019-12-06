@@ -7,6 +7,7 @@ TagManager:
   - Pickup
   - Enemy
   - Door
+  - Ground
   layers:
   - Default
   - TransparentFX
