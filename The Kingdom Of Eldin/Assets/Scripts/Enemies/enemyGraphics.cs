@@ -17,6 +17,6 @@ public class enemyGraphics : MonoBehaviour
         {
             transform.localScale = Vector3.Scale(transform.localScale, new Vector3(1f, 1f, 1f));
         }
-            
+       
     }
 }
