@@ -33,7 +33,7 @@ public class Patrol : MonoBehaviour
         }
   
         
-        if (groundInfo.collider == false || wallInfo.collider.gameObject.tag == "Ground")
+        if (groundInfo.collider == null || wallInfo.collider.gameObject.tag == "Ground" || wallInfo.collider.gameObject.tag == "Enemy")
         {
             if (movingRight == true)
             {

@@ -1,7 +1,37 @@
 fileFormatVersion: 2
 guid: 8a8a0771242d2a04da8b1b00901b7962
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 9058234117164438086
+    second: trees rocks and bushes_0
+  - first:
+      213: -8874062963209019204
+    second: trees rocks and bushes_1
+  - first:
+      213: 5919426914057506989
+    second: trees rocks and bushes_2
+  - first:
+      213: 1420068282429668434
+    second: trees rocks and bushes_3
+  - first:
+      213: 3531538189122406932
+    second: trees rocks and bushes_4
+  - first:
+      213: 361777169954880387
+    second: trees rocks and bushes_5
+  - first:
+      213: -364953052075282958
+    second: trees rocks and bushes_6
+  - first:
+      213: -5113108376981522191
+    second: trees rocks and bushes_7
+  - first:
+      213: 6488779641466636819
+    second: trees rocks and bushes_8
+  - first:
+      213: 5031537976182532307
+    second: trees rocks and bushes_9
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -31,7 +61,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -40,12 +70,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,9 +100,231 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: trees rocks and bushes_0
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 16
+        width: 61
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9949a0020c045954d84011a0dbed4ae4
+      internalID: 9058234117164438086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trees rocks and bushes_1
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 15
+        width: 61
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7376ca5f7434cf34d89673e9a4e5656a
+      internalID: -8874062963209019204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trees rocks and bushes_2
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 15
+        width: 61
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 745c7c54d2a1d394cbe04b5735395e1d
+      internalID: 5919426914057506989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trees rocks and bushes_3
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 14
+        width: 61
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 796683d667d24014dacae4f86814c0da
+      internalID: 1420068282429668434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trees rocks and bushes_4
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 16
+        width: 31
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf9721ca63506aa4e9a5d35a3b545c3d
+      internalID: 3531538189122406932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trees rocks and bushes_5
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 15
+        width: 92
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c88c45fe83903f04b8ab534da532e35d
+      internalID: 361777169954880387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trees rocks and bushes_6
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 15
+        width: 92
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc8beaaad6dbab044b3155e916560814
+      internalID: -364953052075282958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trees rocks and bushes_7
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 12
+        width: 92
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87098c2463117db428b3c7af6285c919
+      internalID: -5113108376981522191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trees rocks and bushes_8
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 12
+        width: 36
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71399877fdec36842886061b5cb887cb
+      internalID: 6488779641466636819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trees rocks and bushes_9
+      rect:
+        serializedVersion: 2
+        x: 712
+        y: 15
+        width: 22
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 845e7d5dfda1557438671998123d534a
+      internalID: 5031537976182532307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

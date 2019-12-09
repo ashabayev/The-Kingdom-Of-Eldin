@@ -38,7 +38,18 @@ public class hop : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground")))
+        if (player.transform.position.x > transform.position.x)
+        {
+            transform.Translate(Vector2.right * speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(Vector2.left * speed * Time.deltaTime);
+        }
+
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundCheck.position, Vector2.down, .1f);
+        //if (Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground")))
+        if (groundInfo.collider.gameObject.tag == "Ground" || groundInfo.collider.gameObject.tag == "Enemy")
         {
             isGrounded = true;
         }
@@ -47,19 +58,12 @@ public class hop : MonoBehaviour
             isGrounded = false;
             //animator.Play("Enemy_jump");
         }
-        if(player.transform.position.x > transform.position.x)
-        {
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
-        }
-        else
-        {
-            transform.Translate(Vector2.left * speed * Time.deltaTime);
-        }
+
+
            
         //jumping
         if ((isGrounded))
         {
-            print("ji");
             rb2d.velocity = new Vector2(0, 0);
             rb2d.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
             //animator.Play("Player_jump");

@@ -77,8 +77,7 @@ public class EnemyAttack : MonoBehaviour
         if (playerHealth.currentHealth > 0)
         {
             // ... damage the player.
-            anim.SetTrigger("Attack");
-            rb2d.velocity = Vector2.zero;
+            //anim.SetTrigger("Attack");
             playerHealth.TakeDamage(attackDamage);
         }
     }
