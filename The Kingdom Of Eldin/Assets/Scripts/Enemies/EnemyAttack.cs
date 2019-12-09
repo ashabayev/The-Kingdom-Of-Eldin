@@ -10,6 +10,7 @@ public class EnemyAttack : MonoBehaviour
 {
     public float timeBetweenAttacks = 0.5f;
     public int attackDamage = 10;
+    Rigidbody2D rb2d;
 
     Animator anim;
     GameObject player;
@@ -24,7 +25,8 @@ public class EnemyAttack : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerHealth = player.GetComponent<PlayerHealth>();
         enemyHealth = GetComponent<EnemyHealth>();
-        //anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -34,6 +36,7 @@ public class EnemyAttack : MonoBehaviour
         {
             //the player is in range.
             playerInRange = true;
+            
         }
     }
 
@@ -74,6 +77,8 @@ public class EnemyAttack : MonoBehaviour
         if (playerHealth.currentHealth > 0)
         {
             // ... damage the player.
+            anim.SetTrigger("Attack");
+            rb2d.velocity = Vector2.zero;
             playerHealth.TakeDamage(attackDamage);
         }
     }
