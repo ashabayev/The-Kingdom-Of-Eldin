@@ -107,16 +107,20 @@ public class PlayerController2D : MonoBehaviour
 
     private void FixedUpdate()
     {
+        animator.SetFloat("Speed", Mathf.Abs(rb2d.velocity.x));
+
+
+
         if (Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground")) ||
             Physics2D.Linecast(transform.position, groundCheckL.position, 1 << LayerMask.NameToLayer("Ground")) ||
             Physics2D.Linecast(transform.position, groundCheckR.position, 1 << LayerMask.NameToLayer("Ground")))
         {
             isGrounded = true;
+            animator.SetBool("IsJumping", false);
         }
         else
         {
             isGrounded = false;
-            //animator.Play("Player_jump");
         }
 
         //horizontal movement
@@ -127,10 +131,9 @@ public class PlayerController2D : MonoBehaviour
                 rb2d.velocity = new Vector2(runSpeed, rb2d.velocity.y);
                 if (isGrounded)
                 {
-                    //animator.Play("Player_run");
                 }
             }
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = true;
             attackRotation.transform.eulerAngles = new Vector3(0, 0, 0);
 
         }
@@ -141,17 +144,15 @@ public class PlayerController2D : MonoBehaviour
                 rb2d.velocity = new Vector2(-runSpeed, rb2d.velocity.y);
                 if (isGrounded)
                 {
-                    //animator.Play("Player_run");
                 }
             }
-            spriteRenderer.flipX = true;
+            spriteRenderer.flipX = false;
             attackRotation.transform.eulerAngles = new Vector3(0, 180, 0);
         }
         else
         {
             if (isGrounded)
             {
-                //animator.Play("Player_idle");
             }
             rb2d.velocity = new Vector2(0, rb2d.velocity.y);
         }
@@ -160,7 +161,7 @@ public class PlayerController2D : MonoBehaviour
         if ((Input.GetKey("space") && isGrounded) & !isBlocking)
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpSpeed);
-            //animator.Play("Player_jump");
+            animator.SetBool("IsJumping", true);
         }
 
         //basic attack
@@ -187,7 +188,7 @@ public class PlayerController2D : MonoBehaviour
             //release block
             isBlocking = false;
             canMove = true;
-            Debug.Log("release block");
+            animator.SetBool("IsBlocking", false);
         }
         //if (Input.GetKeyUp("c") && isCharging)
         //{
@@ -225,26 +226,24 @@ public class PlayerController2D : MonoBehaviour
         {
             jobID = 3;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            jobID = 4;
-        }
         else if (Input.GetKeyDown(KeyCode.Q))
         {
             jobID--;
             if (jobID < 1)
             {
-                jobID = 4;
+                jobID = 3;
             }
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
             jobID++;
-            if (jobID > 4)
+            if (jobID > 3)
             {
                 jobID = 1;
             }
         }
+        animator.SetInteger("JobID", jobID);
+
     }
     void depleteMana()
     {
@@ -300,9 +299,6 @@ public class PlayerController2D : MonoBehaviour
             case 3:
                 Debug.Log("job set to ranger");
                 return "ranger";
-            case 4:
-                Debug.Log("job set to wizard");
-                return "wizard";
             default:
                 Debug.Log("current job error - jobID currently set to: " + jobID);
                 return "knight";
@@ -342,8 +338,6 @@ public class PlayerController2D : MonoBehaviour
                 break;
             case "ranger":
                 break;
-            case "wizard":
-                break;
             default:
                 Debug.Log("current job error - basic attack");
                 break;
@@ -353,7 +347,7 @@ public class PlayerController2D : MonoBehaviour
     IEnumerator MeleeBasicAttack(float attackSpeed, float attackRange)
     {
         //if we're cool we wait until the windup is done here
-
+        animator.SetBool("IsAttacking", true);
         //check for enemies to damage all at once because we're lazy
         Collider2D[] damagedEnemies = Physics2D.OverlapCircleAll(attackPos.position, attackRange, 1 << LayerMask.NameToLayer("Enemy"));
         foreach (Collider2D enemyCollider in damagedEnemies)
@@ -375,6 +369,7 @@ public class PlayerController2D : MonoBehaviour
 
         //wrap up
         isAttacking = false;
+        animator.SetBool("IsAttacking", false);
         Debug.Log("attack successful");
     }
 
@@ -387,6 +382,7 @@ public class PlayerController2D : MonoBehaviour
                 {
                     isBlocking = true;
                     canMove = false;
+                    animator.SetBool("IsBlocking", true);
                 }
                 break;
             case "rogue":
@@ -400,8 +396,6 @@ public class PlayerController2D : MonoBehaviour
                 break;
             case "ranger":
                 break;
-            case "wizard":
-                break;
             default:
                 Debug.Log("current job error - special ability");
                 break;
@@ -411,9 +405,10 @@ public class PlayerController2D : MonoBehaviour
     IEnumerator Dash(float speed, float duration, float cooldown)
     {
         canMove = false;
+        animator.SetBool("IsDodging", true);
 
         float direction = 1f;
-        if (spriteRenderer.flipX == true)
+        if (spriteRenderer.flipX == false)
         {
             direction = -1f;
         }
@@ -429,10 +424,12 @@ public class PlayerController2D : MonoBehaviour
         //dash over
         canMove = true;
         isDashing = false;
+        animator.SetBool("IsDodging", false);
 
         //cooldown period
         yield return new WaitForSeconds(cooldown);
         DashOnCooldown = false;
+
     }
 
     //this is to make seeing the attack hitbox easy in the inspector, but you need to have the player selected to see it
