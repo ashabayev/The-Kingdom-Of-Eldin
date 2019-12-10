@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 8669510521165591312}
   - component: {fileID: 8669510521165591313}
   - component: {fileID: 8669510521165591314}
-  - component: {fileID: 8669510521165591315}
+  - component: {fileID: 896263180641861400}
   m_Layer: 9
   m_Name: groundEnemy
   m_TagString: Enemy
@@ -251,8 +251,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &8669510521165591315
-BoxCollider2D:
+--- !u!70 &896263180641861400
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -264,19 +264,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.028033257, y: -0.24}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.5941334, y: 0.48659998}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.012054443, y: 0.009031773}
+  m_Size: {x: 1.0062828, y: 1.1808953}
+  m_Direction: 0
 --- !u!1 &8669510521822184654
 GameObject:
   m_ObjectHideFlags: 0
